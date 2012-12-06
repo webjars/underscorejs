@@ -41,8 +41,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>1.4.2</upstreamVersion>
-        <downloadUrl>https://cdnjs.cloudflare.com/ajax/libs/underscore.js/${upstreamVersion}</downloadUrl>
+        <upstreamVersion>1.4.3</upstreamVersion>
+        <downloadUrl>http://underscorejs.org/</downloadUrl>
         <destinationDir>${project.build.directory}/classes/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
     </properties>
 
