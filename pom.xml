@@ -41,7 +41,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>1.4.3</upstreamVersion>
+        <upstreamVersion>1.4.4</upstreamVersion>
         <downloadUrl>http://underscorejs.org/</downloadUrl>
         <destinationDir>${project.build.directory}/classes/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
     </properties>
@@ -70,8 +70,7 @@
                         <configuration>
                             <url>${downloadUrl}</url>
                             <fromFile>underscore-min.js</fromFile>
-                            <toDir>${destinationDir}</toDir>
-                            <toFile>underscore.min.js</toFile>
+                            <toFile>${destinationDir}/underscore.min.js</toFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -84,34 +83,4 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.2</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-    
 </project>
