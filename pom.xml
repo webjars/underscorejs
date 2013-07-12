@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs</artifactId>
-    <version>1.4.5-SNAPSHOT</version>
+    <version>1.5.1-SNAPSHOT</version>
     <name>Underscore.js</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
@@ -41,7 +41,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>1.4.4</upstreamVersion>
+        <upstreamVersion>1.5.1</upstreamVersion>
         <downloadUrl>http://underscorejs.org/</downloadUrl>
         <destinationDir>${project.build.directory}/classes/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
     </properties>
