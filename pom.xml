@@ -41,8 +41,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>1.5.1</upstreamVersion>
-        <downloadUrl>http://underscorejs.org/</downloadUrl>
+        <upstreamVersion>1.5.2</upstreamVersion>
+        <downloadUrl>https://raw.github.com/jashkenas/underscore/${upstreamVersion}</downloadUrl>
         <destinationDir>${project.build.directory}/classes/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
     </properties>
 
@@ -70,7 +70,17 @@
                         <configuration>
                             <url>${downloadUrl}</url>
                             <fromFile>underscore-min.js</fromFile>
-                            <toFile>${destinationDir}/underscore.min.js</toFile>
+                            <toDir>${destinationDir}</toDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>download-min-map</id>
+                        <phase>process-resources</phase>
+                        <goals><goal>download-single</goal></goals>
+                        <configuration>
+                            <url>${downloadUrl}</url>
+                            <fromFile>underscore-min.map</fromFile>
+                            <toDir>${destinationDir}</toDir>
                         </configuration>
                     </execution>
                 </executions>
