@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs</artifactId>
-    <version>1.5.2-1-SNAPSHOT</version>
+    <version>1.5.2-1</version>
     <name>Underscore.js</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/underscorejs</url>
         <connection>scm:git:https://github.com/webjars/underscorejs.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/underscorejs.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>underscorejs-1.5.2-1</tag>
     </scm>
 
     <developers>
@@ -81,23 +81,19 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message="unzip archive"/>
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip"
-                                       dest="${project.build.directory}"/>
+                                <echo message="unzip archive" />
+                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
 
-                                <echo message="moving resources"/>
+                                <echo message="moving resources" />
                                 <copy todir="${destDir}/node_modules/underscore">
                                     <fileset dir="${extractDir}">
-                                        <include name="package.json"/>
-                                        <include name="underscore.js"/>
+                                        <include name="package.json" />
+                                        <include name="underscore.js" />
                                     </fileset>
                                 </copy>
-                                <move file="${extractDir}/underscore.js"
-                                      toDir="${destDir}"/>
-                                <move file="${extractDir}/underscore-min.js"
-                                      toDir="${destDir}"/>
-                                <move file="${extractDir}/underscore-min.map"
-                                      toDir="${destDir}"/>
+                                <move file="${extractDir}/underscore.js" toDir="${destDir}" />
+                                <move file="${extractDir}/underscore-min.js" toDir="${destDir}" />
+                                <move file="${extractDir}/underscore-min.map" toDir="${destDir}" />
                             </target>
                         </configuration>
                     </execution>
