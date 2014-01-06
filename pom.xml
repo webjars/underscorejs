@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs</artifactId>
-    <version>1.5.3-SNAPSHOT</version>
+    <version>1.5.2-1-SNAPSHOT</version>
     <name>Underscore.js</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
@@ -37,13 +37,18 @@
             <name>James Ward</name>
             <email>james@jamesward.org</email>
         </developer>
+        <developer>
+          <id>huntchr</id>
+          <name>Christopher Hunt</name>
+        </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <upstreamVersion>1.5.2</upstreamVersion>
-        <downloadUrl>https://raw.github.com/jashkenas/underscore/${upstreamVersion}</downloadUrl>
-        <destinationDir>${project.build.directory}/classes/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
+        <upstream.url>https://github.com/jashkenas/underscore</upstream.url>
+        <extractDir>${project.build.directory}/underscore-${upstreamVersion}</extractDir>
+        <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
     </properties>
 
     <build>
@@ -58,29 +63,42 @@
                         <phase>process-resources</phase>
                         <goals><goal>download-single</goal></goals>
                         <configuration>
-                            <url>${downloadUrl}</url>
-                            <fromFile>underscore.js</fromFile>
-                            <toDir>${destinationDir}</toDir>
+                            <url>${upstream.url}/archive</url>
+                            <fromFile>${upstreamVersion}.zip</fromFile>
+                            <toDir>${project.build.directory}</toDir>
                         </configuration>
                     </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
                     <execution>
-                        <id>download-min-js</id>
                         <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                         <configuration>
-                            <url>${downloadUrl}</url>
-                            <fromFile>underscore-min.js</fromFile>
-                            <toDir>${destinationDir}</toDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download-min-map</id>
-                        <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
-                        <configuration>
-                            <url>${downloadUrl}</url>
-                            <fromFile>underscore-min.map</fromFile>
-                            <toDir>${destinationDir}</toDir>
+                            <target>
+                                <echo message="unzip archive"/>
+                                <unzip src="${project.build.directory}/${upstreamVersion}.zip"
+                                       dest="${project.build.directory}"/>
+
+                                <echo message="moving resources"/>
+                                <copy todir="${destDir}/node_modules/underscore">
+                                    <fileset dir="${extractDir}">
+                                        <include name="package.json"/>
+                                        <include name="underscore.js"/>
+                                    </fileset>
+                                </copy>
+                                <move file="${extractDir}/underscore.js"
+                                      toDir="${destDir}"/>
+                                <move file="${extractDir}/underscore-min.js"
+                                      toDir="${destDir}"/>
+                                <move file="${extractDir}/underscore-min.map"
+                                      toDir="${destDir}"/>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
