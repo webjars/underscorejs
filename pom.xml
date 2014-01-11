@@ -8,12 +8,12 @@
         <version>7</version>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
-    <artifactId>underscorejs</artifactId>
+    <artifactId>underscorejs-parent</artifactId>
     <version>1.5.2-2-SNAPSHOT</version>
-    <name>Underscore.js</name>
-    <description>WebJar for Underscore.js</description>
+    <name>Underscore.js Parent</name>
+    <description>Parent WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
 
     <licenses>
@@ -51,60 +51,57 @@
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-4</version>
-                <executions>
-                    <execution>
-                        <id>download-js</id>
-                        <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
-                        <configuration>
-                            <url>${upstream.url}/archive</url>
-                            <fromFile>${upstreamVersion}.zip</fromFile>
-                            <toDir>${project.build.directory}</toDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+    <modules>
+        <module>node</module>
+        <module>web</module>
+    </modules>  
 
-                                <echo message="moving resources" />
-                                <copy todir="${destDir}/node_modules/underscore">
-                                    <fileset dir="${extractDir}">
-                                        <include name="package.json" />
-                                        <include name="underscore.js" />
-                                    </fileset>
-                                </copy>
-                                <move file="${extractDir}/underscore.js" toDir="${destDir}" />
-                                <move file="${extractDir}/underscore-min.js" toDir="${destDir}" />
-                                <move file="${extractDir}/underscore-min.map" toDir="${destDir}" />
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
-            </plugin>
-        </plugins>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>wagon-maven-plugin</artifactId>
+                    <version>1.0-beta-4</version>
+                    <executions>
+                        <execution>
+                            <id>download-js</id>
+                            <phase>process-resources</phase>
+                            <goals><goal>download-single</goal></goals>
+                            <configuration>
+                                <url>${upstream.url}/archive</url>
+                                <fromFile>${upstreamVersion}.zip</fromFile>
+                                <toDir>${project.build.directory}</toDir>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.7</version>
+                    <executions>
+                        <execution>
+                            <phase>process-resources</phase>
+                            <id>extract</id>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <configuration>
+                                <target>
+                                    <echo message="unzip archive" />
+                                    <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+                                </target>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.3.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
