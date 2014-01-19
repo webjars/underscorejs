@@ -85,12 +85,7 @@
                                 <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
 
                                 <echo message="moving resources" />
-                                <copy todir="${destDir}/node_modules/underscore">
-                                    <fileset dir="${extractDir}">
-                                        <include name="package.json" />
-                                        <include name="underscore.js" />
-                                    </fileset>
-                                </copy>
+                                <move file="${extractDir}/package.json" toDir="${destDir}" />
                                 <move file="${extractDir}/underscore.js" toDir="${destDir}" />
                                 <move file="${extractDir}/underscore-min.js" toDir="${destDir}" />
                                 <move file="${extractDir}/underscore-min.map" toDir="${destDir}" />
