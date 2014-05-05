@@ -49,6 +49,12 @@
         <upstream.url>https://github.com/jashkenas/underscore</upstream.url>
         <extractDir>${project.build.directory}/underscore-${upstreamVersion}</extractDir>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
+        <requirejs>
+            {
+                paths: { "underscorejs": "underscore" },
+                shim: { "underscorejs": { "exports": "_" } }
+            }
+        </requirejs>
     </properties>
 
     <build>
