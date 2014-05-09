@@ -51,8 +51,8 @@
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
         <requirejs>
             {
-                paths: { "underscorejs": "underscore" },
-                shim: { "underscorejs": { "exports": "_" } }
+                "paths": { "underscorejs": "underscore" },
+                "shim": { "underscorejs": { "exports": "_" } }
             }
         </requirejs>
     </properties>
