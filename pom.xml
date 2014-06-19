@@ -8,13 +8,18 @@
         <version>7</version>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
-    <artifactId>underscorejs</artifactId>
-    <version>1.6.0-4-SNAPSHOT</version>
-    <name>Underscore.js</name>
+    <artifactId>underscorejs-parent</artifactId>
+    <version>1.6.0-4</version>
+    <name>Underscore.js Parent</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
+
+    <modules>
+        <module>web</module>
+        <module>node</module>
+    </modules>
 
     <licenses>
         <license>
@@ -76,12 +81,14 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
                 <executions>
                     <execution>
                         <phase>process-resources</phase>
+                        <id>extract</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -89,16 +96,12 @@
                             <target>
                                 <echo message="unzip archive" />
                                 <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
-
-                                <echo message="moving resources" />
-                                <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/underscore-${upstreamVersion}" includes="underscore*" />
-                                </move>
                             </target>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
