@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs-parent</artifactId>
-    <version>1.6.0-4</version>
+    <version>1.6.0-4-SNAPSHOT</version>
     <name>Underscore.js Parent</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
