@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs</artifactId>
-    <version>1.7.1-SNAPSHOT</version>
+    <version>1.7.0-1-SNAPSHOT</version>
     <name>Underscore.js</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
@@ -51,8 +51,14 @@
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
         <requirejs>
             {
-                "paths": { "underscorejs": "underscore" },
-                "shim": { "underscorejs": { "exports": "_" } }
+                "paths": {
+                    "underscore": "underscore",
+                    "underscorejs": "underscore"
+                },
+                "shim": {
+                    "underscore": { "exports": "_" },
+                    "underscorejs": { "exports": "_" }
+                }
             }
         </requirejs>
     </properties>
