@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs</artifactId>
-    <version>1.8.2-SNAPSHOT</version>
+    <version>1.8.2</version>
     <name>Underscore.js</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/underscorejs</url>
         <connection>scm:git:https://github.com/webjars/underscorejs.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/underscorejs.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>underscorejs-1.8.2</tag>
     </scm>
 
     <developers>
@@ -93,12 +93,12 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message="unzip archive"/>
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}"/>
+                                <echo message="unzip archive" />
+                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
 
-                                <echo message="moving resources"/>
+                                <echo message="moving resources" />
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/underscore-${upstreamVersion}" includes="underscore*"/>
+                                    <fileset dir="${project.build.directory}/underscore-${upstreamVersion}" includes="underscore*" />
                                 </move>
                             </target>
                         </configuration>
