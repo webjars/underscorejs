@@ -93,12 +93,12 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message="unzip archive" />
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+                                <echo message="unzip archive"/>
+                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}"/>
 
-                                <echo message="moving resources" />
+                                <echo message="moving resources"/>
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/underscore-${upstreamVersion}" includes="underscore*" />
+                                    <fileset dir="${project.build.directory}/underscore-${upstreamVersion}" includes="underscore*"/>
                                 </move>
                             </target>
                         </configuration>
@@ -108,13 +108,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.5.1</version>
             </plugin>
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.5.1</version>
+                <version>1.6.5</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId>
