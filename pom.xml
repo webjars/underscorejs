@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>underscorejs</artifactId>
-    <version>1.8.3</version>
+    <version>1.8.4-SNAPSHOT</version>
     <name>Underscore.js</name>
     <description>WebJar for Underscore.js</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/underscorejs</url>
         <connection>scm:git:https://github.com/webjars/underscorejs.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/underscorejs.git</developerConnection>
-        <tag>underscorejs-1.8.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
