@@ -45,7 +45,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>1.8.2</upstreamVersion>
+        <upstreamVersion>1.8.3</upstreamVersion>
         <upstream.url>https://github.com/jashkenas/underscore</upstream.url>
         <extractDir>${project.build.directory}/underscore-${upstreamVersion}</extractDir>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
